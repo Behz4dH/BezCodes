@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/data/portfolio";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -50,7 +44,6 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD structured data for search engines
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -69,31 +62,25 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        {/* Prevent theme flash for returning users */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}})();`,
           }}
         />
-        {/* Structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Console easter egg */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `console.log('%cHey there, curious developer! %c\\nLike what you see? Let\\'s talk.','font-size:16px;font-weight:bold;color:#3b82f6;','font-size:12px;color:#a1a1aa;');`,
+            __html: `console.log('%cportfolio@dev:~$ %c./start.sh','font-family:monospace;font-size:14px;color:#4ade80;','font-family:monospace;font-size:14px;color:#60a5fa;');console.log('%cInitializing developer portfolio...','font-family:monospace;font-size:12px;color:#6b7280;');`,
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Skip to content for keyboard/screen reader users */}
+      <body className={`${jetbrainsMono.variable} font-mono antialiased`}>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[#4ade80] focus:px-3 focus:py-2 focus:text-black focus:outline-none"
         >
           Skip to content
         </a>

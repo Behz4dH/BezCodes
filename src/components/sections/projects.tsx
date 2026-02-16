@@ -1,14 +1,8 @@
 "use client";
 
 import { projects } from "@/data/portfolio";
-import { Section, SectionHeader } from "@/components/ui/section";
-import {
-  ScrollReveal,
-  StaggerContainer,
-  StaggerItem,
-} from "@/components/ui/scroll-reveal";
-import { cn } from "@/lib/utils";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { motion } from "framer-motion";
+import { Folder, GitBranch, ExternalLink } from "lucide-react";
 
 function ProjectCard({
   project,
@@ -17,89 +11,37 @@ function ProjectCard({
   project: (typeof projects)[number];
   index: number;
 }) {
-  const isEven = index % 2 === 0;
-
   return (
-    <CardSpotlight
-      className={cn(
-        "group rounded-3xl border border-border/50 bg-surface/30 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/20 hover:shadow-lg md:p-10",
-        !isEven && "md:direction-rtl"
-      )}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.15 }}
+      className="group overflow-hidden rounded-lg border border-[#30363d] bg-[#161b22] transition-all duration-200 hover:border-[#4ade80]/30"
     >
-      <div className={cn("grid gap-8 md:grid-cols-2")}>
-      {/* Image placeholder */}
-      <div
-        className={cn(
-          "relative aspect-video overflow-hidden rounded-xl bg-gradient-to-br from-surface to-border/30 md:direction-ltr",
-          "flex items-center justify-center"
-        )}
-      >
-        <div className="text-center">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="text-accent"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg>
-          </div>
-          <p className="text-xs text-muted-foreground">Project Preview</p>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col justify-center md:direction-ltr">
-        {project.featured && (
-          <span className="mb-3 inline-flex w-fit items-center rounded-full bg-accent/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-accent">
-            Featured
+      {/* File Header */}
+      <div className="flex items-center justify-between border-b border-[#30363d] bg-[#0d1117] px-4 py-3">
+        <div className="flex items-center gap-3">
+          <Folder className="h-4 w-4 text-[#7d8590]" />
+          <span className="font-mono text-sm text-[#e6edf3]">
+            {project.title.toLowerCase().replace(/\s+/g, '-')}/
           </span>
-        )}
-
-        <h3 className="text-xl font-bold tracking-tight text-foreground md:text-2xl">
-          {project.title}
-        </h3>
-
-        <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">
-          {project.description}
-        </p>
-
-        {/* Tags */}
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-border/60 px-3 py-1 text-xs font-medium text-muted-foreground"
-            >
-              {tag}
+          {project.featured && (
+            <span className="rounded bg-[#4ade80]/20 px-1.5 py-0.5 text-[10px] font-medium text-[#4ade80]">
+              featured
             </span>
-          ))}
+          )}
         </div>
-
-        {/* Links */}
-        <div className="mt-6 flex gap-4">
+        <div className="flex gap-3">
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              className="flex items-center gap-1.5 text-xs text-[#7d8590] transition-colors hover:text-[#e6edf3]"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              Source
+              <GitBranch className="h-3.5 w-3.5" />
+              <span>git</span>
             </a>
           )}
           {project.live && (
@@ -107,52 +49,97 @@ function ProjectCard({
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-light"
+              className="flex items-center gap-1.5 text-xs text-[#7d8590] transition-colors hover:text-[#4ade80]"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-              Live Demo
+              <ExternalLink className="h-3.5 w-3.5" />
+              <span>demo</span>
             </a>
           )}
         </div>
       </div>
+
+      {/* File Content */}
+      <div className="p-5">
+        {/* README Preview */}
+        <div className="mb-4">
+          <div className="mb-2 flex items-center gap-2 text-xs text-[#484f58]">
+            <span>README.md</span>
+          </div>
+          <p className="text-sm leading-relaxed text-[#c9d1d9]">
+            {project.description}
+          </p>
+        </div>
+
+        {/* Tech Stack as imports */}
+        <div className="rounded bg-[#0d1117] p-3">
+          <div className="mb-2 text-xs text-[#484f58]">package.json</div>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded bg-[#21262d] px-2 py-1 text-xs text-[#79c0ff]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
-    </CardSpotlight>
+    </motion.div>
   );
 }
 
 export function Projects() {
-  return (
-    <Section id="projects" className="dot-grid bg-surface/30">
-      <ScrollReveal>
-        <SectionHeader
-          label="Projects"
-          title="Things I've built."
-          description="Selected projects that showcase my work across AI, full-stack development, and systems engineering."
-        />
-      </ScrollReveal>
+  const featuredProjects = projects.filter((p) => p.featured);
 
-      <StaggerContainer className="space-y-8">
-        {projects
-          .filter((p) => p.featured)
-          .map((project, i) => (
-            <StaggerItem key={project.title}>
-              <ProjectCard project={project} index={i} />
-            </StaggerItem>
+  return (
+    <section id="projects" className="relative px-6 py-16 lg:px-12">
+      {/* Line numbers */}
+      <div className="absolute left-0 top-0 hidden h-full select-none flex-col border-r border-[#30363d] bg-[#010409] px-3 py-16 text-right text-sm text-[#484f58] lg:flex">
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div key={i}>{i + 120}</div>
+        ))}
+      </div>
+
+      <div className="mx-auto max-w-5xl lg:ml-20">
+        {/* Class Definition */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-8"
+        >
+          <div className="text-sm text-[#8b949e] syntax-comment">// projects/</div>
+          <h2 className="mt-4 text-2xl font-bold lg:text-3xl">
+            <span className="syntax-keyword">class</span>{" "}
+            <span className="syntax-class">Projects</span>
+            <span className="text-[#e6edf3]"> {'{'}</span>
+          </h2>
+          <p className="mt-2 text-sm text-[#7d8590]">
+            <span className="syntax-keyword">constructor</span>
+            <span className="text-[#e6edf3]">() {'{'}</span>
+          </p>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid gap-4 md:grid-cols-2">
+          {featuredProjects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
-      </StaggerContainer>
-    </Section>
+        </div>
+
+        {/* Closing braces */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-8 space-y-0 text-2xl font-bold text-[#e6edf3]"
+        >
+          <div>{'}'}</div>
+          <div>{'}'}</div>
+        </motion.div>
+      </div>
+    </section>
   );
 }

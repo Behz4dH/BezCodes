@@ -1,12 +1,6 @@
 "use client";
 
 import { skills, categoryLabels, categoryOrder, type Skill } from "@/data/portfolio";
-import { Section, SectionHeader } from "@/components/ui/section";
-import {
-  ScrollReveal,
-  StaggerContainer,
-  StaggerItem,
-} from "@/components/ui/scroll-reveal";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
@@ -14,53 +8,89 @@ import { AnimatePresence, motion } from "framer-motion";
 function SkillCard({ skill }: { skill: Skill }) {
   const [expanded, setExpanded] = useState(false);
 
+  const getExtension = (name: string) => {
+    const langMap: Record<string, string> = {
+      "Python": ".py",
+      "TypeScript": ".ts",
+      "JavaScript": ".js",
+      "React": ".jsx",
+      "Next.js": ".tsx",
+      "Node.js": ".js",
+      "PostgreSQL": ".sql",
+      "Docker": ".dockerfile",
+      "Git": ".git",
+      "Linux": ".sh"
+    };
+    return langMap[name] || ".config";
+  };
+
   return (
     <motion.div
       layout
       className={cn(
-        "group cursor-pointer rounded-xl border border-border/50 bg-surface/50 p-5 transition-all duration-300",
-        "hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-md",
-        expanded && "border-accent/40 bg-surface"
+        "group cursor-pointer rounded-lg border border-[#30363d] bg-[#161b22] transition-all duration-200",
+        "hover:border-[#4ade80]/50 hover:bg-[#1c2128]",
+        expanded && "border-[#4ade80] bg-[#1c2128]"
       )}
       onClick={() => setExpanded(!expanded)}
     >
-      <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-foreground">{skill.name}</h4>
-        <div className="flex gap-1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div
-              key={i}
-              className={cn(
-                "h-1.5 w-1.5 rounded-full transition-colors",
-                i < skill.proficiency ? "bg-accent" : "bg-border"
-              )}
-            />
-          ))}
+      <div className="border-b border-[#30363d] bg-[#0d1117] px-4 py-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#7d8590]">{getExtension(skill.name)}</span>
+            <span className="text-sm font-medium text-[#e6edf3]">{skill.name}</span>
+          </div>
+          <div className="flex gap-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className={cn(
+                  "h-1.5 w-1.5 rounded-full transition-colors",
+                  i < skill.proficiency ? "bg-[#4ade80]" : "bg-[#30363d]"
+                )}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <AnimatePresence>
-        {expanded && skill.opinion && (
-          <motion.p
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-3 text-sm leading-relaxed text-muted"
-          >
-            {skill.opinion}
-          </motion.p>
-        )}
-      </AnimatePresence>
+      <div className="p-4">
+        {/* Proficiency bar */}
+        <div className="mb-3">
+          <div className="h-1.5 w-full rounded-full bg-[#30363d]">
+            <div 
+              className="h-full rounded-full bg-[#4ade80] transition-all duration-500"
+              style={{ width: `${(skill.proficiency / 5) * 100}%` }}
+            />
+          </div>
+          <div className="mt-1 flex justify-between text-xs text-[#7d8590]">
+            <span>proficiency</span>
+            <span>{skill.proficiency}/5</span>
+          </div>
+        </div>
 
-      {skill.opinion && (
-        <p className={cn(
-          "mt-2 text-xs text-muted-foreground transition-opacity",
-          expanded ? "opacity-0 h-0" : "opacity-100"
-        )}>
-          Click to read my take
-        </p>
-      )}
+        <AnimatePresence>
+          {expanded && skill.opinion && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="border-t border-[#30363d] pt-3"
+            >
+              <p className="syntax-comment text-xs">
+                // {skill.opinion}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {!expanded && skill.opinion && (
+          <p className="mt-2 text-xs text-[#484f58]">
+            Click to view comments
+          </p>
+        )}
+      </div>
     </motion.div>
   );
 }
@@ -74,66 +104,90 @@ export function Skills() {
       : skills.filter((s) => s.category === activeCategory);
 
   return (
-    <Section id="skills" className="dot-grid bg-surface/30">
-      <ScrollReveal>
-        <SectionHeader
-          label="Skills"
-          title="What I work with."
-          description="Technologies and tools I use daily, along with my honest opinions on each."
-        />
-      </ScrollReveal>
+    <section id="skills" className="relative px-6 py-16 lg:px-12">
+      {/* Line numbers */}
+      <div className="absolute left-0 top-0 hidden h-full select-none flex-col border-r border-[#30363d] bg-[#010409] px-3 py-16 text-right text-sm text-[#484f58] lg:flex">
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div key={i}>{i + 50}</div>
+        ))}
+      </div>
 
-      {/* Category filter */}
-      <ScrollReveal>
-        <div className="mb-10 flex flex-wrap gap-2">
+      <div className="mx-auto max-w-5xl lg:ml-20">
+        {/* Import Statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-8"
+        >
+          <div className="text-sm text-[#8b949e] syntax-comment">// skills.json</div>
+          <h2 className="mt-4 text-2xl font-bold lg:text-3xl">
+            <span className="syntax-keyword">import</span>
+            <span className="text-[#e6edf3]"> {'{ '}</span>
+            <span className="syntax-class">Skills</span>
+            <span className="text-[#e6edf3]"> {'} '}</span>
+            <span className="syntax-keyword">from</span>
+            <span className="syntax-string"> &apos;./tech-stack&apos;</span>
+            <span className="text-[#e6edf3]">;</span>
+          </h2>
+        </motion.div>
+
+        {/* Category Filter as Import Statements */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mb-8 flex flex-wrap gap-2"
+        >
           <button
             onClick={() => setActiveCategory("all")}
             className={cn(
-              "rounded-full px-4 py-2 text-xs font-medium transition-all duration-200",
+              "rounded px-3 py-1.5 text-xs font-medium transition-all",
               activeCategory === "all"
-                ? "bg-foreground text-background"
-                : "border border-border text-muted hover:border-foreground hover:text-foreground"
+                ? "bg-[#4ade80] text-black"
+                : "border border-[#30363d] bg-[#21262d] text-[#c9d1d9] hover:bg-[#30363d]"
             )}
           >
-            All
+            import *
           </button>
           {categoryOrder.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={cn(
-                "rounded-full px-4 py-2 text-xs font-medium transition-all duration-200",
+                "rounded px-3 py-1.5 text-xs font-medium transition-all",
                 activeCategory === cat
-                  ? "bg-foreground text-background"
-                  : "border border-border text-muted hover:border-foreground hover:text-foreground"
+                  ? "bg-[#4ade80] text-black"
+                  : "border border-[#30363d] bg-[#21262d] text-[#c9d1d9] hover:bg-[#30363d]"
               )}
             >
-              {categoryLabels[cat]}
+              {`import { ${cat} }`}
             </button>
           ))}
-        </div>
-      </ScrollReveal>
+        </motion.div>
 
-      {/* Skills grid */}
-      <motion.div
-        layout
-        className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        <AnimatePresence mode="popLayout">
-          {filteredSkills.map((skill) => (
-            <motion.div
-              key={skill.name}
-              layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-            >
-              <SkillCard skill={skill} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-    </Section>
+        {/* Skills Grid */}
+        <motion.div
+          layout
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+              >
+                <SkillCard skill={skill} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </section>
   );
 }
