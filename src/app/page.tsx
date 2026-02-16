@@ -9,6 +9,7 @@ import { TabBar } from "@/components/ui/tab-bar";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { StatusBar } from "@/components/ui/status-bar";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { MobileHeader } from "@/components/ui/mobile-header";
 
 export default function Home() {
   return (
@@ -16,11 +17,17 @@ export default function Home() {
       <ScrollProgress />
       <Sidebar />
       
+      {/* Mobile Header - sticky with tabs and breadcrumbs */}
+      <MobileHeader />
+      
       <div className="flex min-h-screen flex-col lg:ml-60">
-        <TabBar />
-        <Breadcrumbs />
+        {/* Desktop navigation - sticky */}
+        <div className="sticky top-0 z-40 hidden lg:block">
+          <TabBar />
+          <Breadcrumbs />
+        </div>
         
-        <main id="main-content" className="flex-1 pb-12">
+        <main id="main-content" className="flex-1 pb-12 pt-0 lg:pt-0">
           <Hero />
           <About />
           <Skills />
