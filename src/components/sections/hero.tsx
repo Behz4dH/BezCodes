@@ -95,7 +95,7 @@ me.build(); // Let's create something amazing`;
 
       <div className="mx-auto max-w-4xl lg:ml-20">
         {/* Code Editor Window */}
-        <div className="code-block overflow-hidden">
+        <div className="code-block overflow-hidden w-full min-w-[320px] lg:min-w-[700px]">
           {/* Window Header */}
           <div className="code-block-header">
             <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ me.build(); // Let's create something amazing`;
           </div>
 
           {/* Code Content */}
-          <div className="relative p-6 lg:p-8">
+          <div className="relative p-6 lg:p-8 min-h-[420px] lg:min-h-[450px]">
             <pre className="text-sm leading-relaxed lg:text-base whitespace-pre-wrap">
               <code 
                 className="text-[#e6edf3]"
