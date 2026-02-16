@@ -38,7 +38,7 @@ export function About() {
             {aboutData.stats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div className="rounded-2xl border border-border/50 bg-surface/50 p-6">
-                  <p className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                  <p className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl" style={{ fontFeatureSettings: '"tnum" 1' }}>
                     {stat.value}
                   </p>
                   <p className="mt-1 text-sm text-muted">{stat.label}</p>

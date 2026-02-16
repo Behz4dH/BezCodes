@@ -6,13 +6,13 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export function Contact() {
   return (
-    <Section id="contact">
+    <Section id="contact" className="noise-overlay">
       <div className="mx-auto max-w-2xl text-center">
         <ScrollReveal>
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent">
             Contact
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+          <h2 className="fluid-heading font-semibold tracking-tight text-foreground">
             {contactData.headline}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
@@ -24,7 +24,7 @@ export function Contact() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3.5 text-sm font-semibold text-background transition-all duration-200 hover:bg-accent hover:text-white hover:shadow-lg hover:shadow-accent/20"
+              className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3.5 text-sm font-semibold text-background transition-all duration-200 hover:bg-accent hover:text-white hover:shadow-lg hover:shadow-accent/20 active:scale-[0.97] active:transition-none"
             >
               <svg
                 width="16"
@@ -46,7 +46,7 @@ export function Contact() {
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border text-muted transition-all duration-200 hover:border-foreground hover:text-foreground"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border text-muted transition-all duration-200 hover:border-foreground hover:text-foreground hover:scale-105 active:scale-95 active:transition-none"
                 aria-label="GitHub"
               >
                 <svg
@@ -62,7 +62,7 @@ export function Contact() {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border text-muted transition-all duration-200 hover:border-foreground hover:text-foreground"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border text-muted transition-all duration-200 hover:border-foreground hover:text-foreground hover:scale-105 active:scale-95 active:transition-none"
                 aria-label="LinkedIn"
               >
                 <svg

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="noise-overlay relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section aria-labelledby="hero-heading" className="noise-overlay relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Subtle background gradient */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -21,7 +21,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/60 px-4 py-1.5 text-xs font-medium text-muted backdrop-blur-sm">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
@@ -33,8 +33,10 @@ export function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            id="hero-heading"
+            className="fluid-display mt-8 font-bold text-foreground"
+            style={{ letterSpacing: "-0.035em" }}
           >
             I build software
             <br />
@@ -45,7 +47,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl"
           >
             {siteConfig.description}
@@ -55,12 +57,12 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-10 flex flex-wrap gap-4"
           >
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background transition-all duration-200 hover:bg-accent hover:text-white hover:shadow-lg hover:shadow-accent/20"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background transition-all duration-200 hover:bg-accent hover:text-white hover:shadow-lg hover:shadow-accent/20 active:scale-[0.97] active:transition-none"
             >
               View my work
               <svg
@@ -72,13 +74,14 @@ export function Hero() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
             <a
               href="#about"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3 text-sm font-semibold text-foreground transition-all duration-200 hover:border-accent hover:text-accent"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3 text-sm font-semibold text-foreground transition-all duration-200 hover:border-accent hover:text-accent active:scale-[0.97] active:transition-none"
             >
               About me
             </a>
@@ -88,7 +91,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-16 flex items-center gap-5"
           >
             <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
@@ -100,7 +103,7 @@ export function Hero() {
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-muted-foreground transition-all duration-200 hover:text-foreground hover:scale-110"
                 aria-label="GitHub"
               >
                 <svg
@@ -116,7 +119,7 @@ export function Hero() {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-muted-foreground transition-all duration-200 hover:text-foreground hover:scale-110"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -132,7 +135,7 @@ export function Hero() {
                 href={siteConfig.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-muted-foreground transition-all duration-200 hover:text-foreground hover:scale-110"
                 aria-label="Twitter"
               >
                 <svg
@@ -153,7 +156,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div

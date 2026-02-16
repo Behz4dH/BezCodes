@@ -8,6 +8,7 @@ import {
   StaggerItem,
 } from "@/components/ui/scroll-reveal";
 import { cn } from "@/lib/utils";
+import { CardSpotlight } from "@/components/ui/card-spotlight";
 
 function ProjectCard({
   project,
@@ -19,12 +20,13 @@ function ProjectCard({
   const isEven = index % 2 === 0;
 
   return (
-    <div
+    <CardSpotlight
       className={cn(
-        "group relative grid gap-8 rounded-3xl border border-border/50 bg-surface/30 p-8 transition-all duration-500 hover:border-accent/20 hover:shadow-lg md:grid-cols-2 md:p-10",
+        "group rounded-3xl border border-border/50 bg-surface/30 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/20 hover:shadow-lg md:p-10",
         !isEven && "md:direction-rtl"
       )}
     >
+      <div className={cn("grid gap-8 md:grid-cols-2")}>
       {/* Image placeholder */}
       <div
         className={cn(
@@ -126,13 +128,14 @@ function ProjectCard({
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </CardSpotlight>
   );
 }
 
 export function Projects() {
   return (
-    <Section id="projects" className="bg-surface/30">
+    <Section id="projects" className="dot-grid bg-surface/30">
       <ScrollReveal>
         <SectionHeader
           label="Projects"

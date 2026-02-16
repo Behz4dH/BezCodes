@@ -58,7 +58,7 @@ const techStack: TechItem[] = [
 
 function TechCard({ item, index }: { item: TechItem; index: number }) {
   return (
-    <div className="group relative flex items-start gap-5 rounded-2xl border border-border/50 bg-surface/30 p-6 transition-all duration-300 hover:border-accent/30 hover:bg-surface/60 hover:shadow-md">
+    <div className="group relative flex items-start gap-5 rounded-2xl border border-border/50 bg-surface/30 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:bg-surface/60 hover:shadow-md">
       {/* Index number */}
       <span className="font-mono text-3xl font-bold leading-none text-border transition-colors group-hover:text-accent/30">
         {String(index + 1).padStart(2, "0")}

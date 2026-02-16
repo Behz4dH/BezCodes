@@ -2,6 +2,7 @@
 
 import { navLinks, siteConfig } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
+import { useActiveSection } from "@/lib/use-active-section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
@@ -10,6 +11,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
+  const activeSection = useActiveSection();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
@@ -27,7 +29,7 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+      <nav aria-label="Main navigation" className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
         {/* Logo */}
         <a
           href="#"
@@ -43,9 +45,18 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-muted transition-colors duration-200 hover:text-foreground"
+                className={cn(
+                  "group relative text-sm font-medium transition-colors duration-200 hover:text-foreground",
+                  activeSection === link.href ? "text-foreground" : "text-muted"
+                )}
               >
                 {link.label}
+                <span
+                  className={cn(
+                    "absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300",
+                    activeSection === link.href ? "w-full" : "w-0 group-hover:w-full"
+                  )}
+                />
               </a>
             </li>
           ))}
@@ -56,7 +67,7 @@ export function Navbar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-all duration-200 hover:bg-accent hover:text-white"
+            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-all duration-200 hover:bg-accent hover:text-white active:scale-[0.97] active:transition-none"
           >
             Get in touch
           </a>
@@ -68,7 +79,8 @@ export function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="flex flex-col gap-1.5"
-          aria-label="Toggle navigation"
+            aria-label="Toggle navigation"
+            aria-expanded={mobileOpen}
         >
           <span
             className={cn(
@@ -120,7 +132,7 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-all hover:bg-accent hover:text-white"
+                className="inline-flex rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-all hover:bg-accent hover:text-white active:scale-[0.97] active:transition-none"
               >
                 Get in touch
               </a>

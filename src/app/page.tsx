@@ -6,12 +6,16 @@ import { TechStack } from "@/components/sections/tech-stack";
 import { Projects } from "@/components/sections/projects";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { CursorGlow } from "@/components/ui/cursor-glow";
 
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
+      <CursorGlow />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <Skills />

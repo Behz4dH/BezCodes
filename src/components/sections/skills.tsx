@@ -19,7 +19,7 @@ function SkillCard({ skill }: { skill: Skill }) {
       layout
       className={cn(
         "group cursor-pointer rounded-xl border border-border/50 bg-surface/50 p-5 transition-all duration-300",
-        "hover:border-accent/30 hover:shadow-md",
+        "hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-md",
         expanded && "border-accent/40 bg-surface"
       )}
       onClick={() => setExpanded(!expanded)}
@@ -74,7 +74,7 @@ export function Skills() {
       : skills.filter((s) => s.category === activeCategory);
 
   return (
-    <Section id="skills" className="bg-surface/30">
+    <Section id="skills" className="dot-grid bg-surface/30">
       <ScrollReveal>
         <SectionHeader
           label="Skills"

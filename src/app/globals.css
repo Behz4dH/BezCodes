@@ -21,7 +21,7 @@
     --background: #09090b;
     --foreground: #fafafa;
     --muted: #a1a1aa;
-    --muted-foreground: #71717a;
+    --muted-foreground: #8b8b95;
     --accent: #3b82f6;
     --accent-light: #60a5fa;
     --surface: #18181b;
@@ -37,7 +37,7 @@ html.dark {
   --background: #09090b;
   --foreground: #fafafa;
   --muted: #a1a1aa;
-  --muted-foreground: #71717a;
+  --muted-foreground: #8b8b95;
   --accent: #3b82f6;
   --accent-light: #60a5fa;
   --surface: #18181b;
@@ -83,6 +83,7 @@ html.light {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -91,6 +92,36 @@ body {
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== ACCESSIBILITY ===== */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== FLUID TYPOGRAPHY ===== */
+.fluid-display {
+  font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.08;
+}
+
+.fluid-heading {
+  font-size: clamp(1.875rem, 3vw + 0.75rem, 3rem);
+  line-height: 1.15;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -123,6 +154,22 @@ body {
   background-repeat: repeat;
   pointer-events: none;
   z-index: 0;
+}
+
+/* ===== BACKGROUNDS ===== */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ===== BODY FADE-IN ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  animation: fadeIn 0.3s ease-out;
 }
 
 /* ===== SELECTION ===== */
