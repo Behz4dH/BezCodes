@@ -12,6 +12,45 @@ This document provides guidelines for AI coding agents working in this Next.js 1
 - **Icons:** lucide-react, react-icons/si
 - **Font:** JetBrains Mono (monospace, IDE theme)
 
+## ⚠️ MANDATORY: Best Practices & Standards
+
+**ALL code changes MUST follow these best practices for both design and coding:**
+
+### Design Best Practices
+- **Maintain IDE aesthetic** - All UI must fit the code editor theme (line numbers, file tabs, terminal style)
+- **Consistent color palette** - Use only theme colors: `#0d1117` (bg), `#e6edf3` (fg), `#30363d` (borders), `#4ade80` (accent)
+- **Mobile-first responsive** - Design for mobile (390px) first, then enhance for desktop (1440px)
+- **Accessible by default** - Include ARIA labels, keyboard navigation, focus states, respect `prefers-reduced-motion`
+- **Semantic HTML** - Use proper tags: `<section>`, `<nav>`, `<article>`, `<button>` (not divs for buttons)
+- **Consistent spacing** - Use Tailwind's spacing scale: `p-4`, `gap-4`, `my-6`, etc.
+- **Typography** - JetBrains Mono everywhere (monospace), consistent font sizes
+- **Animation restraint** - Use Framer Motion sparingly; animations should enhance, not distract
+- **Visual hierarchy** - Clear distinction between headings, body text, and accents
+- **Interactive feedback** - Hover states, focus rings, loading states for all interactive elements
+
+### Coding Best Practices
+- **TypeScript strict** - No `any` types, all functions typed, proper error handling
+- **Single Responsibility** - One component = one purpose, extract complex logic to hooks
+- **DRY principle** - Reuse existing components and utilities, don't duplicate code
+- **Early returns** - Guard clauses to reduce nesting
+- **Descriptive naming** - Variables and functions should explain what they do
+- **Comments only when necessary** - Code should be self-documenting; explain "why" not "what"
+- **No magic numbers** - Use named constants for values that aren't self-explanatory
+- **Error boundaries** - Handle errors gracefully, provide fallbacks
+- **Performance** - Memoize expensive calculations, lazy load below-fold content
+- **Security** - Never expose secrets, sanitize user inputs, validate data
+
+### Code Quality Checklist (Before Submitting)
+- [ ] TypeScript compiles without errors (`npx tsc --noEmit`)
+- [ ] ESLint passes (`npm run lint`)
+- [ ] No console.logs left in production code
+- [ ] Components have proper TypeScript types
+- [ ] Responsive on mobile and desktop
+- [ ] No accessibility violations (keyboard nav, ARIA labels)
+- [ ] Follows existing file structure and naming conventions
+- [ ] IDE theme is maintained throughout
+- [ ] Code is formatted consistently with existing files
+
 ## Build, Lint, and Test Commands
 
 ```bash
