@@ -2,6 +2,7 @@
 
 import { navLinks, siteConfig } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 
@@ -50,18 +51,23 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-all duration-200 hover:bg-accent hover:text-white md:inline-flex"
-        >
-          Get in touch
-        </a>
+        {/* Right side: theme toggle + CTA */}
+        <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-all duration-200 hover:bg-accent hover:text-white"
+          >
+            Get in touch
+          </a>
+        </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex flex-col gap-1.5 md:hidden"
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex flex-col gap-1.5"
           aria-label="Toggle navigation"
         >
           <span
@@ -83,6 +89,7 @@ export function Navbar() {
             )}
           />
         </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
