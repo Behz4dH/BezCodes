@@ -1,6 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { 
+  SiNextdotjs, SiFastapi, SiPytorch, SiLangchain,
+  SiPostgresql, SiDocker, SiTailwindcss, SiVercel
+} from "react-icons/si";
 
 type TechItem = {
   name: string;
@@ -51,6 +55,28 @@ const techStack: TechItem[] = [
   },
 ];
 
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  "Next.js": SiNextdotjs,
+  "FastAPI": SiFastapi,
+  "PyTorch": SiPytorch,
+  "LangChain": SiLangchain,
+  "PostgreSQL": SiPostgresql,
+  "Docker": SiDocker,
+  "Tailwind CSS": SiTailwindcss,
+  "Vercel": SiVercel,
+};
+
+const iconColors: Record<string, string> = {
+  "Next.js": "#ffffff",
+  "FastAPI": "#009688",
+  "PyTorch": "#ee4c2c",
+  "LangChain": "#1c3c3c",
+  "PostgreSQL": "#4169e1",
+  "Docker": "#2496ed",
+  "Tailwind CSS": "#06b6d4",
+  "Vercel": "#ffffff",
+};
+
 const getColor = (category: string) => {
   const colors: Record<string, string> = {
     "Framework": "#ff7b72",
@@ -63,6 +89,9 @@ const getColor = (category: string) => {
 };
 
 function TechCard({ item, index }: { item: TechItem; index: number }) {
+  const IconComponent = iconMap[item.name];
+  const iconColor = iconColors[item.name] || getColor(item.category);
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -77,13 +106,22 @@ function TechCard({ item, index }: { item: TechItem; index: number }) {
       </div>
 
       <div className="flex items-start gap-4">
-        {/* Icon box */}
-        <div 
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-[#0d1117] font-mono text-sm font-bold"
-          style={{ color: getColor(item.category) }}
-        >
-          {item.name.slice(0, 2).toUpperCase()}
-        </div>
+        {/* Icon */}
+        {IconComponent ? (
+          <div 
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-[#0d1117]"
+            style={{ color: iconColor }}
+          >
+            <IconComponent className="h-6 w-6 transition-transform group-hover:scale-110" />
+          </div>
+        ) : (
+          <div 
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-[#0d1117] font-mono text-sm font-bold"
+            style={{ color: getColor(item.category) }}
+          >
+            {item.name.slice(0, 2).toUpperCase()}
+          </div>
+        )}
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
@@ -139,7 +177,7 @@ export function TechStack() {
           <h2 className="mt-4 text-2xl font-bold lg:text-3xl">
             <span className="syntax-keyword">interface</span>{" "}
             <span className="syntax-class">TechStack</span>
-            <span className="text-[#e6edf3]"> {'{'}</span>
+            <span className="text-[#e6edf3]"> {"{"}</span>
           </h2>
         </motion.div>
 
@@ -158,7 +196,7 @@ export function TechStack() {
           transition={{ delay: 0.5 }}
           className="mt-8 text-2xl font-bold text-[#e6edf3]"
         >
-          {'}'}
+          {"}"}
         </motion.div>
       </div>
     </section>

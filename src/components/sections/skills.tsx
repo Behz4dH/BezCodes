@@ -4,25 +4,55 @@ import { skills, categoryLabels, categoryOrder, type Skill } from "@/data/portfo
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import { 
+  SiPython, SiTypescript, SiReact, SiNextdotjs, SiNodedotjs,
+  SiPostgresql, SiDocker, SiGit, SiLinux, SiPytorch,
+  SiLangchain, SiHuggingface, SiScikitlearn, SiFastapi,
+  SiTailwindcss, SiVercel
+} from "react-icons/si";
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  "Python": SiPython,
+  "TypeScript": SiTypescript,
+  "React": SiReact,
+  "Next.js": SiNextdotjs,
+  "Node.js": SiNodedotjs,
+  "PostgreSQL": SiPostgresql,
+  "Docker": SiDocker,
+  "Git": SiGit,
+  "Linux": SiLinux,
+  "PyTorch": SiPytorch,
+  "LangChain": SiLangchain,
+  "Hugging Face": SiHuggingface,
+  "Scikit-learn": SiScikitlearn,
+  "FastAPI": SiFastapi,
+  "Tailwind CSS": SiTailwindcss,
+  "Vercel": SiVercel,
+};
+
+const iconColors: Record<string, string> = {
+  "Python": "#3776ab",
+  "TypeScript": "#3178c6",
+  "React": "#61dafb",
+  "Next.js": "#ffffff",
+  "Node.js": "#339933",
+  "PostgreSQL": "#4169e1",
+  "Docker": "#2496ed",
+  "Git": "#f05032",
+  "Linux": "#fcc624",
+  "PyTorch": "#ee4c2c",
+  "LangChain": "#1c3c3c",
+  "Hugging Face": "#ffd21e",
+  "Scikit-learn": "#f7931e",
+  "FastAPI": "#009688",
+  "Tailwind CSS": "#06b6d4",
+  "Vercel": "#ffffff",
+};
 
 function SkillCard({ skill }: { skill: Skill }) {
   const [expanded, setExpanded] = useState(false);
-
-  const getExtension = (name: string) => {
-    const langMap: Record<string, string> = {
-      "Python": ".py",
-      "TypeScript": ".ts",
-      "JavaScript": ".js",
-      "React": ".jsx",
-      "Next.js": ".tsx",
-      "Node.js": ".js",
-      "PostgreSQL": ".sql",
-      "Docker": ".dockerfile",
-      "Git": ".git",
-      "Linux": ".sh"
-    };
-    return langMap[name] || ".config";
-  };
+  const IconComponent = iconMap[skill.name];
+  const iconColor = iconColors[skill.name] || "#7d8590";
 
   return (
     <motion.div
@@ -34,10 +64,21 @@ function SkillCard({ skill }: { skill: Skill }) {
       )}
       onClick={() => setExpanded(!expanded)}
     >
-      <div className="border-b border-[#30363d] bg-[#0d1117] px-4 py-2">
+      <div className="border-b border-[#30363d] bg-[#0d1117] px-4 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[#7d8590]">{getExtension(skill.name)}</span>
+          <div className="flex items-center gap-3">
+            {IconComponent ? (
+              <div style={{ color: iconColor }}>
+                <IconComponent className="h-5 w-5 transition-transform group-hover:scale-110" />
+              </div>
+            ) : (
+              <div 
+                className="flex h-5 w-5 items-center justify-center rounded text-[10px] font-bold"
+                style={{ backgroundColor: iconColor + "30", color: iconColor }}
+              >
+                {skill.name.slice(0, 2).toUpperCase()}
+              </div>
+            )}
             <span className="text-sm font-medium text-[#e6edf3]">{skill.name}</span>
           </div>
           <div className="flex gap-1">
@@ -123,9 +164,9 @@ export function Skills() {
           <div className="text-sm text-[#8b949e] syntax-comment">// skills.json</div>
           <h2 className="mt-4 text-2xl font-bold lg:text-3xl">
             <span className="syntax-keyword">import</span>
-            <span className="text-[#e6edf3]"> {'{ '}</span>
+            <span className="text-[#e6edf3]"> {"{ "}</span>
             <span className="syntax-class">Skills</span>
-            <span className="text-[#e6edf3]"> {'} '}</span>
+            <span className="text-[#e6edf3]"> {"} "}</span>
             <span className="syntax-keyword">from</span>
             <span className="syntax-string"> &apos;./tech-stack&apos;</span>
             <span className="text-[#e6edf3]">;</span>
