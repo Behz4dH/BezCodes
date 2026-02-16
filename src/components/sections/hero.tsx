@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { siteConfig } from "@/data/portfolio";
 import { motion } from "framer-motion";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 function applySyntaxHighlighting(text: string): string {
   // Escape HTML
@@ -85,15 +86,18 @@ me.build(); // Let's create something amazing`;
   }, []);
 
   return (
-    <section className="relative flex min-h-[calc(100vh-8rem)] items-center px-6 py-16 lg:px-12">
+    <section className="relative flex min-h-[calc(100vh-8rem)] items-center px-6 py-16 lg:px-12 overflow-hidden">
+      {/* Aurora Background */}
+      <AuroraBackground showRadialGradient={true} />
+
       {/* Line numbers */}
-      <div className="absolute left-0 top-0 hidden h-full select-none flex-col border-r border-[#30363d] bg-[#010409] px-3 py-16 text-right text-sm text-[#484f58] lg:flex">
+      <div className="absolute left-0 top-0 hidden h-full select-none flex-col border-r border-[#30363d] bg-[#010409] px-3 py-16 text-right text-sm text-[#484f58] lg:flex z-10">
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i}>{i + 1}</div>
         ))}
       </div>
 
-      <div className="mx-auto max-w-4xl lg:ml-20">
+      <div className="mx-auto max-w-4xl lg:ml-20 relative z-10">
         {/* Code Editor Window */}
         <div className="code-block overflow-hidden w-full min-w-[320px] lg:min-w-[700px]">
           {/* Window Header */}

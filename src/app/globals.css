@@ -60,6 +60,9 @@ html.light {
   --color-surface-elevated: var(--surface-elevated);
   --color-border: var(--border);
   --font-mono: var(--font-mono);
+  
+  /* Aurora animation */
+  --animate-aurora: aurora 60s linear infinite;
 }
 
 /* ===== BASE STYLES ===== */
@@ -123,6 +126,16 @@ body::before {
 .syntax-number { color: var(--syntax-number); }
 .syntax-operator { color: var(--syntax-operator); }
 .syntax-class { color: var(--syntax-class); }
+
+/* ===== AURORA BACKGROUND ===== */
+@keyframes aurora {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
 
 /* ===== CURSOR BLINK ===== */
 @keyframes blink {
