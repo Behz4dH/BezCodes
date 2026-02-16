@@ -1,8 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { siteConfig } from "@/data/portfolio";
 import { motion } from "framer-motion";
+
+function applySyntaxHighlighting(text: string): string {
+  // Escape HTML
+  let highlighted = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  // Split by lines to handle comments separately
+  const lines = highlighted.split('\n');
+  const processedLines = lines.map(line => {
+    // If line is a full-line comment, return it as-is with comment styling
+    if (line.trim().startsWith('//')) {
+      return '<span class="syntax-comment">' + line + '</span>';
+    }
+    
+    // Check for inline comments (// after code)
+    const commentIndex = line.indexOf('//');
+    if (commentIndex !== -1) {
+      // Split into code part and comment part
+      const codePart = line.substring(0, commentIndex);
+      const commentPart = line.substring(commentIndex);
+      
+      // Process code part with syntax highlighting
+      let processed = codePart;
+      processed = processed.replace(/('[^']*')/g, '<span class="syntax-string">$1</span>');
+      processed = processed.replace(/\b(import|from|const|new)\b/g, '<span class="syntax-keyword">$1</span>');
+      processed = processed.replace(/\b([A-Z][a-zA-Z]*)\b/g, '<span class="syntax-class">$1</span>');
+      processed = processed.replace(/\b([a-z_][a-zA-Z0-9_]*)(?=\s*:)/g, '<span class="syntax-function">$1</span>');
+      processed = processed.replace(/\.([a-z_][a-zA-Z0-9_]*)/g, '.<span class="syntax-function">$1</span>');
+      processed = processed.replace(/:/g, '<span class="syntax-operator">:</span>');
+      
+      // Combine with comment part
+      return processed + '<span class="syntax-comment">' + commentPart + '</span>';
+    }
+    
+    // No comments, apply regular syntax highlighting
+    let processed = line;
+    processed = processed.replace(/('[^']*')/g, '<span class="syntax-string">$1</span>');
+    processed = processed.replace(/\b(import|from|const|new)\b/g, '<span class="syntax-keyword">$1</span>');
+    processed = processed.replace(/\b([A-Z][a-zA-Z]*)\b/g, '<span class="syntax-class">$1</span>');
+    processed = processed.replace(/\b([a-z_][a-zA-Z0-9_]*)(?=\s*:)/g, '<span class="syntax-function">$1</span>');
+    processed = processed.replace(/\.([a-z_][a-zA-Z0-9_]*)/g, '.<span class="syntax-function">$1</span>');
+    processed = processed.replace(/:/g, '<span class="syntax-operator">:</span>');
+    
+    return processed;
+  });
+
+  return processedLines.join('\n');
+}
 
 export function Hero() {
   const [typedText, setTypedText] = useState("");
@@ -18,12 +68,14 @@ const me = new Engineer({
 
 me.build(); // Let's create something amazing`;
 
+  const highlightedText = useMemo(() => applySyntaxHighlighting(typedText), [typedText]);
+
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
       if (index < fullText.length) {
-        setTypedText(fullText.slice(0, index + 1));
         index++;
+        setTypedText(fullText.slice(0, index));
       } else {
         clearInterval(timer);
       }
@@ -57,64 +109,14 @@ me.build(); // Let's create something amazing`;
 
           {/* Code Content */}
           <div className="relative p-6 lg:p-8">
-            <pre className="text-sm leading-relaxed lg:text-base">
-              <code>
-                {typedText.split('\n').map((line, i) => (
-                  <div key={i} className="min-h-[1.6em]">
-                    {line.startsWith('//') ? (
-                      <span className="syntax-comment">{line}</span>
-                    ) : line.startsWith('import') ? (
-                      <>
-                        <span className="syntax-keyword">import</span>
-                        <span className="text-[#e6edf3]"> {'{ '}</span>
-                        <span className="syntax-class">Engineer</span>
-                        <span className="text-[#e6edf3]"> {'} '}</span>
-                        <span className="syntax-keyword">from</span>
-                        <span className="syntax-string"> &apos;career&apos;</span>
-                        <span className="text-[#e6edf3]">;</span>
-                      </>
-                    ) : line.startsWith('const') ? (
-                      <>
-                        <span className="syntax-keyword">const</span>
-                        <span className="text-[#e6edf3]"> me = </span>
-                        <span className="syntax-keyword">new</span>
-                        <span className="syntax-class"> Engineer</span>
-                        <span className="text-[#e6edf3]">({'{'}</span>
-                      </>
-                    ) : line.includes('focus:') ? (
-                      <>
-                        <span className="text-[#e6edf3]">  </span>
-                        <span className="syntax-function">focus</span>
-                        <span className="syntax-operator">:</span>
-                        <span className="syntax-string"> &apos;AI & Software&apos;</span>
-                        <span className="text-[#e6edf3]">,</span>
-                      </>
-                    ) : line.includes('passion:') ? (
-                      <>
-                        <span className="text-[#e6edf3]">  </span>
-                        <span className="syntax-function">passion</span>
-                        <span className="syntax-operator">:</span>
-                        <span className="syntax-string"> &apos;Building intelligent systems&apos;</span>
-                      </>
-                    ) : line.includes('});') ? (
-                      <span className="text-[#e6edf3]">{'}'});</span>
-                    ) : line.includes('me.build()') ? (
-                      <>
-                        <span className="syntax-function">me</span>
-                        <span className="text-[#e6edf3]">.</span>
-                        <span className="syntax-function">build</span>
-                        <span className="text-[#e6edf3]">();</span>
-                        <span className="syntax-comment"> // Let&apos;s create something amazing</span>
-                        {typedText.length === fullText.length && (
-                          <span className="cursor-blink" />
-                        )}
-                      </>
-                    ) : (
-                      <span className="text-[#e6edf3]">{line}</span>
-                    )}
-                  </div>
-                ))}
-              </code>
+            <pre className="text-sm leading-relaxed lg:text-base whitespace-pre-wrap">
+              <code 
+                className="text-[#e6edf3]"
+                dangerouslySetInnerHTML={{ __html: highlightedText }}
+              />
+              {typedText.length === fullText.length && (
+                <span className="cursor-blink ml-0.5" />
+              )}
             </pre>
           </div>
         </div>
