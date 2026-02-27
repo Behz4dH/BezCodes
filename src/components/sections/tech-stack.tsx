@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { 
   SiNextdotjs, SiFastapi, SiPytorch, SiLangchain,
-  SiDocker, SiDjango, SiReact, SiVuedotjs
+  SiPostgresql, SiDocker, SiTailwindcss, SiVercel
 } from "react-icons/si";
 
 type TechItem = {
@@ -14,67 +14,67 @@ type TechItem = {
 
 const techStack: TechItem[] = [
   {
-    name: "FastAPI",
-    description: "High-performance Python API framework for ML serving and backend services",
-    category: "Framework",
-  },
-  {
-    name: "Django",
-    description: "Batteries-included Python framework for full-stack production applications",
-    category: "Framework",
-  },
-  {
-    name: "React",
-    description: "Component-based UI library for building interactive web applications",
-    category: "Frontend",
-  },
-  {
-    name: "Vue.js",
-    description: "Progressive framework for building modern SPAs and SSR applications",
-    category: "Frontend",
-  },
-  {
     name: "Next.js",
-    description: "Full-stack React framework with SSR/SSG for production web apps",
+    description: "Full-stack React framework for production-grade web apps",
+    category: "Framework",
+  },
+  {
+    name: "FastAPI",
+    description: "High-performance Python API framework for ML serving",
     category: "Framework",
   },
   {
     name: "PyTorch",
-    description: "Deep learning framework for research and production model training",
+    description: "Deep learning framework for research and production",
     category: "AI/ML",
   },
   {
     name: "LangChain",
-    description: "LLM orchestration toolkit for RAG pipelines and agentic workflows",
+    description: "LLM orchestration and agent workflow toolkit",
     category: "AI/ML",
   },
   {
+    name: "PostgreSQL",
+    description: "Relational database with vector search via pgvector",
+    category: "Database",
+  },
+  {
     name: "Docker",
-    description: "Containerization for reproducible deployments and CI/CD pipelines",
+    description: "Containerization for reproducible deployments",
+    category: "Infrastructure",
+  },
+  {
+    name: "Tailwind CSS",
+    description: "Utility-first CSS for rapid, consistent UI development",
+    category: "Frontend",
+  },
+  {
+    name: "Vercel",
+    description: "Edge-first deployment platform for web applications",
     category: "Infrastructure",
   },
 ];
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  "FastAPI": SiFastapi,
-  "Django": SiDjango,
-  "React": SiReact,
-  "Vue.js": SiVuedotjs,
   "Next.js": SiNextdotjs,
+  "FastAPI": SiFastapi,
   "PyTorch": SiPytorch,
   "LangChain": SiLangchain,
+  "PostgreSQL": SiPostgresql,
   "Docker": SiDocker,
+  "Tailwind CSS": SiTailwindcss,
+  "Vercel": SiVercel,
 };
 
 const iconColors: Record<string, string> = {
-  "FastAPI": "#009688",
-  "Django": "#092e20",
-  "React": "#61dafb",
-  "Vue.js": "#4fc08d",
   "Next.js": "#ffffff",
+  "FastAPI": "#009688",
   "PyTorch": "#ee4c2c",
   "LangChain": "#1c3c3c",
+  "PostgreSQL": "#4169e1",
   "Docker": "#2496ed",
+  "Tailwind CSS": "#06b6d4",
+  "Vercel": "#ffffff",
 };
 
 const getColor = (category: string) => {

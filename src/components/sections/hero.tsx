@@ -57,18 +57,17 @@ function applySyntaxHighlighting(text: string): string {
 
 export function Hero() {
   const [typedText, setTypedText] = useState("");
-  const fullText = `// Behzad Hatamikia
-// Software Engineer | AI Engineer
+  const fullText = `// Welcome to my portfolio
+// An AI & Software Engineer
 
 import { Engineer } from 'career';
 
-const behzad = new Engineer({
-  focus: 'Software & AI',
-  stack: 'Python, JS, React, FastAPI',
-  current: 'MSc Applied AI'
+const me = new Engineer({
+  focus: 'AI & Software',
+  passion: 'Building intelligent systems'
 });
 
-behzad.ship(); // Build first, optimize later`;
+me.build(); // Let's create something amazing`;
 
   const highlightedText = useMemo(() => applySyntaxHighlighting(typedText), [typedText]);
 
@@ -108,7 +107,7 @@ behzad.ship(); // Build first, optimize later`;
               <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
               <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
             </div>
-            <span>behzad.ts — portfolio</span>
+            <span>README.md — portfolio</span>
             <div className="w-16" />
           </div>
 

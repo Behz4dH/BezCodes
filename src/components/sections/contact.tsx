@@ -2,7 +2,24 @@
 
 import { contactData, siteConfig } from "@/data/portfolio";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Terminal } from "lucide-react";
+import { Mail, Github, Linkedin, MessageSquare } from "lucide-react";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
 
 export function Contact() {
   return (
@@ -15,130 +32,113 @@ export function Contact() {
       </div>
 
       <div className="mx-auto max-w-3xl lg:ml-20">
-        {/* Terminal Window */}
+        {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="code-block overflow-hidden"
+          transition={{ duration: 0.6 }}
+          className="mb-10"
         >
-          {/* Terminal Header */}
-          <div className="code-block-header">
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-              <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-              <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-            </div>
-            <div className="flex items-center gap-2">
-              <Terminal className="h-4 w-4 text-[#7d8590]" />
-              <span>contact.md — portfolio</span>
-            </div>
-            <div className="w-16" />
+          <div className="text-sm text-[#8b949e]">
+            <span className="syntax-comment">{"// contact.md"}</span>
           </div>
+          <h2 className="mt-4 text-2xl font-bold text-[#e6edf3] lg:text-3xl">
+            {contactData.headline}
+          </h2>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#7d8590] lg:text-base">
+            {contactData.description}
+          </p>
+          <p className="mt-2 text-sm text-[#4ade80]">
+            {contactData.cta}
+          </p>
+        </motion.div>
 
-          {/* Terminal Content */}
-          <div className="p-6 lg:p-8">
-            {/* Comment */}
-            <div className="mb-6">
-              <p className="syntax-comment text-lg">
-                // {contactData.headline}
-              </p>
-              <p className="mt-2 text-[#7d8590]">
-                # {contactData.description}
-              </p>
+        {/* Contact cards */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid gap-4 sm:grid-cols-3"
+        >
+          {/* Email */}
+          <motion.a
+            variants={itemVariants}
+            href={`mailto:${siteConfig.email}`}
+            className="group flex flex-col gap-4 rounded-lg border border-[#30363d] bg-[#161b22] p-5 transition-all hover:border-[#4ade80]/50 hover:bg-[#1c2128]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-[#238636]/15">
+              <Mail className="h-5 w-5 text-[#4ade80]" />
             </div>
-
-            {/* Command Prompt */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 font-mono">
-                <span className="text-[#4ade80]">➜</span>
-                <span className="text-[#a5d6ff]">portfolio</span>
-                <span className="text-[#e6edf3]">git:(</span>
-                <span className="text-[#ff7b72]">main</span>
-                <span className="text-[#e6edf3]">)</span>
-                <span className="animate-pulse">❯</span>
-                <span className="text-[#e6edf3]">npm run contact</span>
-              </div>
-
-              {/* Output */}
-              <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="ml-4 space-y-3 border-l-2 border-[#30363d] pl-4"
-              >
-                <p className="text-sm text-[#7d8590]">
-                  <span className="text-[#4ade80]">✓</span> Loading contact information...
-                </p>
-
-                {/* Contact Links */}
-                <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    className="group flex items-center gap-3 rounded-lg border border-[#30363d] bg-[#0d1117] p-4 transition-all hover:border-[#4ade80]/50 hover:bg-[#161b22]"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded bg-[#238636]/20">
-                      <Mail className="h-5 w-5 text-[#4ade80]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-[#e6edf3]">Email</p>
-                      <p className="text-xs text-[#7d8590]">{siteConfig.email}</p>
-                    </div>
-                  </a>
-
-                  <a
-                    href={siteConfig.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-3 rounded-lg border border-[#30363d] bg-[#0d1117] p-4 transition-all hover:border-[#a5d6ff]/50 hover:bg-[#161b22]"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded bg-[#a5d6ff]/20">
-                      <Github className="h-5 w-5 text-[#a5d6ff]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-[#e6edf3]">GitHub</p>
-                      <p className="text-xs text-[#7d8590]">View source code</p>
-                    </div>
-                  </a>
-
-                  <a
-                    href={siteConfig.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-3 rounded-lg border border-[#30363d] bg-[#0d1117] p-4 transition-all hover:border-[#d2a8ff]/50 hover:bg-[#161b22]"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded bg-[#d2a8ff]/20">
-                      <Linkedin className="h-5 w-5 text-[#d2a8ff]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-[#e6edf3]">LinkedIn</p>
-                      <p className="text-xs text-[#7d8590]">Professional profile</p>
-                    </div>
-                  </a>
-                </div>
-
-                {/* Success Message */}
-                <div className="pt-2">
-                  <p className="text-sm text-[#4ade80]">
-                    ✓ Contact modules loaded successfully!
-                  </p>
-                  <p className="text-sm text-[#7d8590]">
-                    Ready to collaborate on your next project.
-                  </p>
-                </div>
-
-                {/* Blinking cursor */}
-                <div className="flex items-center gap-2 pt-4">
-                  <span className="text-[#4ade80]">➜</span>
-                  <span className="text-[#a5d6ff]">portfolio</span>
-                  <span className="text-[#e6edf3]">git:(</span>
-                  <span className="text-[#ff7b72]">main</span>
-                  <span className="text-[#e6edf3]">)</span>
-                  <span className="cursor-blink" />
-                </div>
-              </motion.div>
+            <div>
+              <p className="text-sm font-medium text-[#e6edf3]">Email me</p>
+              <p className="mt-1 text-xs text-[#7d8590] break-all">{siteConfig.email}</p>
             </div>
+            <span className="mt-auto text-xs text-[#484f58] transition-colors group-hover:text-[#4ade80]">
+              Preferred method
+            </span>
+          </motion.a>
+
+          {/* GitHub */}
+          <motion.a
+            variants={itemVariants}
+            href={siteConfig.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col gap-4 rounded-lg border border-[#30363d] bg-[#161b22] p-5 transition-all hover:border-[#a5d6ff]/50 hover:bg-[#1c2128]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-[#a5d6ff]/15">
+              <Github className="h-5 w-5 text-[#a5d6ff]" />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-[#e6edf3]">GitHub</p>
+              <p className="mt-1 text-xs text-[#7d8590]">Check out my work</p>
+            </div>
+            <span className="mt-auto text-xs text-[#484f58] transition-colors group-hover:text-[#a5d6ff]">
+              @behz4dh
+            </span>
+          </motion.a>
+
+          {/* LinkedIn */}
+          <motion.a
+            variants={itemVariants}
+            href={siteConfig.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col gap-4 rounded-lg border border-[#30363d] bg-[#161b22] p-5 transition-all hover:border-[#d2a8ff]/50 hover:bg-[#1c2128]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-[#d2a8ff]/15">
+              <Linkedin className="h-5 w-5 text-[#d2a8ff]" />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-[#e6edf3]">LinkedIn</p>
+              <p className="mt-1 text-xs text-[#7d8590]">Let&apos;s connect</p>
+            </div>
+            <span className="mt-auto text-xs text-[#484f58] transition-colors group-hover:text-[#d2a8ff]">
+              Professional profile
+            </span>
+          </motion.a>
+        </motion.div>
+
+        {/* Friendly sign-off */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="mt-10 flex items-start gap-3 rounded-lg border border-[#30363d] bg-[#0d1117] p-5"
+        >
+          <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#4ade80]" />
+          <div className="space-y-2 text-sm text-[#7d8590]">
+            <p>
+              I usually respond within a day. If you&apos;re reaching out about a role, feel free to
+              include details about the team and what you&apos;re building — it helps me give a
+              thoughtful reply.
+            </p>
+            <p className="text-[#484f58]">
+              Based in Huddersfield, UK. Open to remote and hybrid opportunities.
+            </p>
           </div>
         </motion.div>
       </div>

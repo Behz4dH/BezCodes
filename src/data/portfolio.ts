@@ -6,11 +6,11 @@ export const siteConfig = {
   name: "Behzad Hatamikia",
   title: "Software Engineer | AI Engineer",
   description:
-    "Software Engineer with 3+ years of experience building internal platforms, backend services, and data-driven applications. Currently focused on AI engineering through an MSc in Applied Artificial Intelligence.",
+    "Software Engineer with 3+ years of experience building internal platforms, backend services, and data-driven applications. MSc in Applied Artificial Intelligence from the University of Huddersfield.",
   url: "https://behzadhatamikia.com",
   email: "behzadhatamikia@outlook.com",
   github: "https://github.com/behz4dh",
-  linkedin: "https://linkedin.com/in/behzadhatamikia",
+  linkedin: "https://www.linkedin.com/in/behzadhatamikia/",
   twitter: "",
 };
 
@@ -25,8 +25,8 @@ export const navLinks = [
 export const aboutData = {
   headline: "Engineer first. AI practitioner by conviction.",
   paragraphs: [
-    "I started in software engineering — building internal platforms, backend services, and data-driven applications across industrial and IT environments. Over 3+ years, I learned to turn ambiguous requirements into reliable systems, improve existing architecture, and ship practical solutions that real users depend on daily.",
-    "Now I'm pursuing an MSc in Applied Artificial Intelligence at the University of Huddersfield, bringing engineering discipline to the AI space. My approach is straightforward — build maintainable software first, then apply AI where it measurably improves outcomes.",
+    "Hey, I'm Behzad. I'm a Software Engineer with 3+ years of experience building internal platforms, backend services, and data-driven applications. I've worked across industrial and IT environments, turning ambiguous requirements into reliable systems that real users depend on daily.",
+    "I recently graduated with an MSc in Applied Artificial Intelligence from the University of Huddersfield, combining my engineering background with a deep focus on AI. My approach is straightforward — build maintainable software first, then apply AI where it measurably improves outcomes.",
     "I work best at the intersection of product needs and technical execution. Whether it's a company-wide CMS serving hundreds of users, a warehouse management system handling thousands of SKUs, or a RAG pipeline answering questions over technical documents — I care about building things that work in production.",
   ],
   stats: [
@@ -272,7 +272,8 @@ export const projects: Project[] = [
 ];
 
 export const contactData = {
-  headline: "Let's build something that works.",
+  headline: "Thanks for scrolling this far.",
   description:
-    "I'm open to discussing product-oriented Software Engineer roles, AI/ML engineering opportunities, or interesting collaborations. Straightforward communication, practical solutions.",
+    "If you're working on something interesting — whether it's a product, a team, or just an idea — I'd genuinely love to hear about it. I'm currently open to Software Engineer and AI Engineer roles, but I'm always happy to chat about tech, collaborate on a side project, or just say hello.",
+  cta: "Drop me a line. No formalities needed.",
 };

@@ -5,58 +5,48 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { 
-  SiPython, SiTypescript, SiJavascript, SiReact, SiNextdotjs, SiNodedotjs,
-  SiDocker, SiGit, SiPytorch, SiTensorflow,
-  SiLangchain, SiScikitlearn, SiFastapi,
-  SiVuedotjs, SiNuxtdotjs, SiDjango, SiFlask, SiPhp,
-  SiPandas, SiAmazonwebservices
+  SiPython, SiTypescript, SiReact, SiNextdotjs, SiNodedotjs,
+  SiPostgresql, SiDocker, SiGit, SiLinux, SiPytorch,
+  SiLangchain, SiHuggingface, SiScikitlearn, SiFastapi,
+  SiTailwindcss, SiVercel
 } from "react-icons/si";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   "Python": SiPython,
-  "JavaScript": SiJavascript,
   "TypeScript": SiTypescript,
   "React": SiReact,
-  "Vue": SiVuedotjs,
   "Next.js": SiNextdotjs,
-  "Nuxt": SiNuxtdotjs,
   "Node.js": SiNodedotjs,
-  "FastAPI": SiFastapi,
-  "Django": SiDjango,
-  "Flask": SiFlask,
-  "PHP": SiPhp,
+  "PostgreSQL": SiPostgresql,
   "Docker": SiDocker,
-  "AWS": SiAmazonwebservices,
   "Git": SiGit,
+  "Linux": SiLinux,
   "PyTorch": SiPytorch,
-  "TensorFlow": SiTensorflow,
   "LangChain": SiLangchain,
+  "Hugging Face": SiHuggingface,
   "Scikit-learn": SiScikitlearn,
-  "Pandas": SiPandas,
+  "FastAPI": SiFastapi,
+  "Tailwind CSS": SiTailwindcss,
+  "Vercel": SiVercel,
 };
 
 const iconColors: Record<string, string> = {
   "Python": "#3776ab",
-  "JavaScript": "#f7df1e",
   "TypeScript": "#3178c6",
   "React": "#61dafb",
-  "Vue": "#4fc08d",
   "Next.js": "#ffffff",
-  "Nuxt": "#00dc82",
   "Node.js": "#339933",
-  "FastAPI": "#009688",
-  "Django": "#092e20",
-  "Flask": "#ffffff",
-  "PHP": "#777bb4",
-  "SQL": "#e38c00",
+  "PostgreSQL": "#4169e1",
   "Docker": "#2496ed",
-  "AWS": "#ff9900",
   "Git": "#f05032",
+  "Linux": "#fcc624",
   "PyTorch": "#ee4c2c",
-  "TensorFlow": "#ff6f00",
   "LangChain": "#1c3c3c",
+  "Hugging Face": "#ffd21e",
   "Scikit-learn": "#f7931e",
-  "Pandas": "#150458",
+  "FastAPI": "#009688",
+  "Tailwind CSS": "#06b6d4",
+  "Vercel": "#ffffff",
 };
 
 function SkillCard({ skill }: { skill: Skill }) {
