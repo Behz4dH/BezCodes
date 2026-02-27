@@ -3,15 +3,15 @@
 // Update this file to customize your portfolio.
 
 export const siteConfig = {
-  name: "Your Name",
-  title: "AI & Software Engineer",
+  name: "Behzad Hatamikia",
+  title: "Software Engineer | AI Engineer",
   description:
-    "Building intelligent systems at the intersection of software engineering and artificial intelligence.",
-  url: "https://yoursite.com",
-  email: "hello@yoursite.com",
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
-  twitter: "https://twitter.com/yourusername",
+    "Software Engineer with 3+ years of experience building internal platforms, backend services, and data-driven applications. Currently focused on AI engineering through an MSc in Applied Artificial Intelligence.",
+  url: "https://behzadhatamikia.com",
+  email: "behzadhatamikia@outlook.com",
+  github: "https://github.com/behz4dh",
+  linkedin: "https://linkedin.com/in/behzadhatamikia",
+  twitter: "",
 };
 
 export const navLinks = [
@@ -23,17 +23,17 @@ export const navLinks = [
 ] as const;
 
 export const aboutData = {
-  headline: "Engineer by training. AI practitioner by conviction.",
+  headline: "Engineer first. AI practitioner by conviction.",
   paragraphs: [
-    "I started in software engineering — building systems, writing clean code, and solving real problems with well-architected solutions. That foundation gave me the discipline and depth to build things that actually work in production.",
-    "This year, I made a deliberate shift deeper into AI. Not because it's trendy, but because I believe the most impactful software of the next decade will be intelligent software. I'm now working at the intersection of both worlds — bringing engineering rigor to AI systems.",
-    "I care about code quality, thoughtful architecture, and building tools that make a real difference. Whether it's a full-stack application or a machine learning pipeline, I approach every project with the same standard: it should be fast, reliable, and maintainable.",
+    "I started in software engineering — building internal platforms, backend services, and data-driven applications across industrial and IT environments. Over 3+ years, I learned to turn ambiguous requirements into reliable systems, improve existing architecture, and ship practical solutions that real users depend on daily.",
+    "Now I'm pursuing an MSc in Applied Artificial Intelligence at the University of Huddersfield, bringing engineering discipline to the AI space. My approach is straightforward — build maintainable software first, then apply AI where it measurably improves outcomes.",
+    "I work best at the intersection of product needs and technical execution. Whether it's a company-wide CMS serving hundreds of users, a warehouse management system handling thousands of SKUs, or a RAG pipeline answering questions over technical documents — I care about building things that work in production.",
   ],
   stats: [
-    { label: "Years in Engineering", value: "5+" },
-    { label: "Projects Delivered", value: "20+" },
+    { label: "Years in Engineering", value: "3+" },
+    { label: "Projects Delivered", value: "15+" },
     { label: "AI Focus Since", value: "2025" },
-    { label: "Technologies", value: "30+" },
+    { label: "Technologies", value: "25+" },
   ],
 };
 
@@ -50,77 +50,91 @@ export const skills: Skill[] = [
     category: "ai",
     proficiency: 5,
     opinion:
-      "The lingua franca of AI. Unmatched ecosystem for ML, but I still think its type system needs work.",
+      "My primary language for AI/ML and backend work. The ecosystem for data science and ML is unmatched.",
   },
   {
     name: "PyTorch",
     category: "ai",
     proficiency: 4,
     opinion:
-      "My go-to for deep learning. The imperative style makes debugging intuitive — something TensorFlow never got right.",
+      "Go-to for deep learning. Built a dual-input CNN for medical imaging classification with it.",
+  },
+  {
+    name: "TensorFlow",
+    category: "ai",
+    proficiency: 3,
+    opinion:
+      "Solid production framework. I reach for PyTorch first, but TF has its strengths in deployment.",
   },
   {
     name: "LangChain",
     category: "ai",
     proficiency: 4,
     opinion:
-      "Powerful for orchestrating LLM workflows, though the abstraction layers can feel heavy for simple tasks.",
-  },
-  {
-    name: "Hugging Face",
-    category: "ai",
-    proficiency: 4,
-    opinion:
-      "Democratized ML in ways nothing else has. The Transformers library is essential in any AI engineer's toolkit.",
+      "Essential for orchestrating LLM workflows. Used it to build RAG pipelines and agentic coding assistants.",
   },
   {
     name: "Scikit-learn",
     category: "ai",
     proficiency: 4,
     opinion:
-      "Still the best starting point for classical ML. Clean API, excellent documentation.",
+      "The best starting point for classical ML. Clean API, rigorous, and always reliable.",
+  },
+  {
+    name: "Pandas",
+    category: "ai",
+    proficiency: 4,
+    opinion:
+      "Core tool for data wrangling. Processed 878k+ reviews and built feature pipelines with it.",
+  },
+  {
+    name: "JavaScript",
+    category: "frontend",
+    proficiency: 5,
+    opinion:
+      "Foundation of everything on the web. Knowing it deeply makes every framework easier.",
   },
   {
     name: "TypeScript",
     category: "frontend",
-    proficiency: 5,
+    proficiency: 4,
     opinion:
-      "Non-negotiable for any serious JS project. The type safety alone has saved me countless hours of debugging.",
+      "Non-negotiable for serious JS projects. The type safety pays dividends at scale.",
   },
   {
     name: "React",
     category: "frontend",
-    proficiency: 5,
+    proficiency: 4,
     opinion:
-      "Battle-tested and endlessly composable. Server Components changed the game for performance.",
+      "Battle-tested and composable. Server Components changed the game for performance.",
+  },
+  {
+    name: "Vue",
+    category: "frontend",
+    proficiency: 4,
+    opinion:
+      "Elegant and approachable. The composition API brought it up to par with React's flexibility.",
   },
   {
     name: "Next.js",
     category: "frontend",
-    proficiency: 5,
+    proficiency: 4,
     opinion:
-      "The React meta-framework done right. App Router is a paradigm shift in how we build web apps.",
+      "The React meta-framework done right. App Router is a paradigm shift for web development.",
   },
   {
-    name: "Tailwind CSS",
+    name: "Nuxt",
     category: "frontend",
-    proficiency: 5,
+    proficiency: 4,
     opinion:
-      "Utility-first is the way. Once you stop fighting it, your velocity triples.",
+      "Vue's answer to Next.js. Great DX with auto-imports and server routes built in.",
   },
   {
     name: "Node.js",
     category: "backend",
-    proficiency: 5,
-    opinion:
-      "My default for APIs and tooling. The ecosystem depth is unmatched.",
-  },
-  {
-    name: "PostgreSQL",
-    category: "backend",
     proficiency: 4,
     opinion:
-      "The most reliable database I've used. Extensions like pgvector make it relevant even for AI workloads.",
+      "My go-to for APIs and tooling on the JS side. The ecosystem depth is unmatched.",
   },
   {
     name: "FastAPI",
@@ -130,25 +144,53 @@ export const skills: Skill[] = [
       "Python's best web framework. Auto-generated docs and async support make it ideal for ML-serving APIs.",
   },
   {
+    name: "Django",
+    category: "backend",
+    proficiency: 4,
+    opinion:
+      "Batteries-included and production-ready. Built end-to-end pipelines from data collection to user-facing apps with it.",
+  },
+  {
+    name: "Flask",
+    category: "backend",
+    proficiency: 3,
+    opinion:
+      "Lightweight and flexible. Good for quick prototypes and microservices.",
+  },
+  {
+    name: "SQL",
+    category: "backend",
+    proficiency: 5,
+    opinion:
+      "Designed, normalized, and indexed relational databases across multiple production systems. Fundamentals matter.",
+  },
+  {
+    name: "PHP",
+    category: "backend",
+    proficiency: 3,
+    opinion:
+      "Used it in production environments. Modern PHP is much better than its reputation suggests.",
+  },
+  {
     name: "Docker",
     category: "devops",
     proficiency: 4,
     opinion:
-      "Containerization is table stakes now. It's the only sane way to ship reproducible environments.",
+      "Containerization is table stakes. The only sane way to ship reproducible environments.",
+  },
+  {
+    name: "AWS",
+    category: "devops",
+    proficiency: 3,
+    opinion:
+      "Cloud deployment fundamentals. Enough to get services running and scaled properly.",
   },
   {
     name: "Git",
     category: "tools",
     proficiency: 5,
     opinion:
-      "The backbone of all collaboration. I think everyone should learn the internals — not just the commands.",
-  },
-  {
-    name: "Linux",
-    category: "devops",
-    proficiency: 4,
-    opinion:
-      "Every engineer should be comfortable on the command line. It's where real work gets done.",
+      "The backbone of all collaboration. I use it every day and think everyone should learn the internals.",
   },
 ];
 
@@ -180,42 +222,57 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "AI Document Analyzer",
+    title: "RAG Knowledge Assistant",
     description:
-      "An intelligent document processing pipeline that uses LLMs to extract, classify, and summarize content from unstructured documents. Built with LangChain, FastAPI, and a React frontend.",
-    tags: ["Python", "LangChain", "FastAPI", "React", "PostgreSQL"],
+      "A Retrieval-Augmented Generation assistant for answering questions over long technical documents. Built ingestion pipelines for PDFs and markdown with chunking, metadata enrichment, and vector indexing. Implements reranking and citation-grounded responses for answer relevance and traceability.",
+    tags: ["Python", "LangChain", "FAISS", "FastAPI", "RAG"],
     featured: true,
-    github: "https://github.com/yourusername/doc-analyzer",
-    live: "https://doc-analyzer.demo.com",
+    github: "https://github.com/behz4dh",
   },
   {
-    title: "Real-time ML Dashboard",
+    title: "Agentic Coding Assistant",
     description:
-      "A monitoring dashboard for machine learning models in production. Tracks drift, performance metrics, and prediction distributions with live-updating visualizations.",
-    tags: ["TypeScript", "Next.js", "Python", "WebSocket", "D3.js"],
+      "An agentic coding workflow that plans tasks, inspects repositories, applies code edits, and validates outcomes with tests. Designed tool orchestration for code search, patch generation, and command execution with checkpoint-based error recovery.",
+    tags: ["Python", "LangChain", "LLM", "Agents", "Automation"],
     featured: true,
-    github: "https://github.com/yourusername/ml-dashboard",
+    github: "https://github.com/behz4dh",
   },
   {
-    title: "Smart Task Orchestrator",
+    title: "Recommendation Under Extreme Sparsity",
     description:
-      "A distributed task queue system with intelligent prioritization using ML-based scheduling. Handles thousands of concurrent jobs with automatic retry and dead-letter management.",
-    tags: ["Node.js", "Redis", "Docker", "TypeScript"],
+      "MSc research project: content-based hotel recommendation pipeline for sparse user interaction data. Processed ~878k reviews from ~569k users across ~3.9k hotels using SBERT embeddings and FAISS retrieval with recency-weighted aggregation and late-fusion ranking.",
+    tags: ["Python", "SBERT", "FAISS", "PyTorch", "NumPy"],
     featured: true,
-    github: "https://github.com/yourusername/task-orchestrator",
+    github: "https://github.com/behz4dh",
   },
   {
-    title: "Neural Code Reviewer",
+    title: "Shoulder Implant Classification",
     description:
-      "An automated code review tool powered by fine-tuned language models. Integrates with GitHub PRs to provide context-aware suggestions and detect anti-patterns.",
-    tags: ["Python", "PyTorch", "Hugging Face", "GitHub API"],
-    featured: false,
-    github: "https://github.com/yourusername/code-reviewer",
+      "Achieved 92% classification accuracy matching published research benchmarks. Designed a dual-input CNN architecture to classify implant manufacturers from X-ray images. Integrated explainable AI (XAI) techniques for clinical interpretability.",
+    tags: ["Python", "PyTorch", "CNN", "XAI", "Claude API"],
+    featured: true,
+    github: "https://github.com/behz4dh",
+  },
+  {
+    title: "PhishNet - Phishing Detection",
+    description:
+      "Chrome extension with 95% detection accuracy for real-time website phishing detection. Scraped and analyzed 10k+ websites to identify phishing indicators. End-to-end pipeline from data collection to user-facing application built with Django.",
+    tags: ["Python", "Django", "Chrome Extension", "ML", "Selenium"],
+    featured: true,
+    github: "https://github.com/behz4dh",
+  },
+  {
+    title: "Quant Strategy Factory",
+    description:
+      "Modular Python strategy factory with YAML-driven presets and pipeline builders for rapid strategy iteration. Built a shared vectorbt backtesting engine with risk-based sizing, SL/TP handling, structured trade logging, and DuckDB persistence.",
+    tags: ["Python", "vectorbt", "DuckDB", "YAML", "Quant"],
+    featured: true,
+    github: "https://github.com/behz4dh",
   },
 ];
 
 export const contactData = {
-  headline: "Let's build something intelligent.",
+  headline: "Let's build something that works.",
   description:
-    "I'm always open to discussing new projects, opportunities in AI/ML engineering, or interesting collaborations. Drop me a message.",
+    "I'm open to discussing product-oriented Software Engineer roles, AI/ML engineering opportunities, or interesting collaborations. Straightforward communication, practical solutions.",
 };

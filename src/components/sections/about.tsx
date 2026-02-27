@@ -122,7 +122,7 @@ export function About() {
               <p className="text-sm text-[#4ade80]">
                 <span className="syntax-keyword">return</span>
                 <span className="text-[#e6edf3]"> "</span>
-                <span className="syntax-string">Engineer by training. AI practitioner by conviction.</span>
+                <span className="syntax-string">{aboutData.headline}</span>
                 <span className="text-[#e6edf3]">";</span>
               </p>
             </div>

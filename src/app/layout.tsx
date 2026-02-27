@@ -51,7 +51,7 @@ const jsonLd = {
   url: siteConfig.url,
   jobTitle: siteConfig.title,
   description: siteConfig.description,
-  sameAs: [siteConfig.github, siteConfig.linkedin, siteConfig.twitter],
+  sameAs: [siteConfig.github, siteConfig.linkedin].filter(Boolean),
 };
 
 export default function RootLayout({
